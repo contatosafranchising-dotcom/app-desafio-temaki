@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio Especial | Participe do Sorteio</title>
+    <!-- Adicionando fontes do Google para um visual agressivo e moderno -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Adicionando FontAwesome para os ícones das redes sociais -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e Variáveis Dark/Red */
+        :root {
+            --primary-color: #e50914;
+            --primary-hover: #b20710;
+            --bg-dark: #050505;
+            --panel-bg: #111111;
+            --text-light: #ffffff;
+            --text-muted: #888888;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            /* Fundo com leve degradê radial escuro para dar profundidade */
+            background-image: radial-gradient(circle at 50% 0%, #2a0000 0%, #050505 60%);
+        }
+
+        /* Estrutura de Landing Page (Split Screen) */
+        .landing-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1100px;
+            width: 100%;
+            background-color: var(--panel-bg);
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(229,9,20,0.15);
+            border: 1px solid #222;
+            overflow: hidden;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @media (max-width: 850px) {
+            .landing-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .info-panel, .form-panel {
+                padding: 35px 25px;
+            }
+            .info-panel h1 {
+                font-size: 36px;
+            }
+            .info-panel .subtitle {
+                font-size: 24px;
+            }
+        }
+
+        /* Otimizações extremas para celulares pequenos */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            .info-panel, .form-panel {
+                padding: 25px 15px;
+            }
+            .info-panel h1 {
+                font-size: 30px;
+            }
+            .info-panel .subtitle {
+                font-size: 20px;
+            }
+            .form-panel h3 {
+                font-size: 22px;
+            }
+            .submit-btn {
+                font-size: 15px;
+            }
+        }
+
+        /* Painel Esquerdo: Informações */
+        .info-panel {
+            padding: 50px 40px;
+            background: linear-gradient(135deg, #1f0000 0%, #0a0000 100%);
+            border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-panel h1 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--primary-color);
+            font-size: 44px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .info-panel h2 {
+            color: #ccc;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .info-panel .subtitle {
+            color: var(--primary-color);
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Oswald', sans-serif;
+            animation: pulseText 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseText {
+            0% { transform: scale(1); text-shadow: 0 0 10px rgba(229, 9, 20, 0.3); }
+            100% { transform: scale(1.08); text-shadow: 0 0 25px rgba(229, 9, 20, 0.9); color: #ff4d4d; }
+        }
+
+        /* Imagem da Arte do Desafio */
+        .promo-banner {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            border: 2px solid #222;
+        }
+
+    .corbucci-img {
+        width: 100%;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #333;
+    }
+
+        .info-text {
+            color: #aaa;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Cards de Premiação (Pódio) */
+        .prize-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .prize-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .prize-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(90deg, #111 0%, #050505 100%);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .prize-card:hover {
+            transform: scale(1.03) translateX(5px);
+        }
+
+        .prize-place {
+            font-size: 16px;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .prize-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            letter-spacing: 1px;
+            width: 130px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.1;
+        }
+
+        .prize-value small {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: #999;
+            font-weight: 500;
+            letter-spacing: 0;
+            margin-top: 2px;
+        }
+
+        /* Destaque Ouro, Prata e Bronze */
+        .first-place { border-left: 4px solid #FFD700; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.05); }
+        .first-place .prize-value { color: #FFD700; }
+
+        .second-place { border-left: 4px solid #C0C0C0; }
+        .second-place .prize-value { color: #C0C0C0; }
+
+        .third-place { border-left: 4px solid #CD7F32; }
+        .third-place .prize-value { color: #CD7F32; }
+
+        .steps {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .steps ol { padding-left: 20px; margin-top: 10px; margin-bottom: 15px; }
+        .steps li { margin-bottom: 5px; }
+
+        /* Painel Direito: Formulário Moderno */
+        .form-panel {
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-panel h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 26px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        /* Rodapé / Redes Sociais */
+        .site-footer {
+            margin-top: 30px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .site-footer p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ccc;
+            font-size: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-color);
+            color: #fff;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(229, 9, 20, 0.3);
+        }
+
+        /* Campos estilo "Floating Labels" (Linha embaixo) */
+        .input-group {
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            border-bottom: 2px solid #333;
+            outline: none;
+            background: transparent;
+            transition: border-color 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            font-size: 16px;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: 0.3s ease all;
+        }
+
+        /* Animação quando clica ou escreve no campo */
+        .input-group input:focus, 
+        .input-group input:not(:placeholder-shown) {
+            border-bottom-color: var(--primary-color);
+        }
+
+        .input-group input:focus ~ label,
+        .input-group input:not(:placeholder-shown) ~ label {
+            top: -18px;
+            font-size: 12px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Upload de Arquivo Customizado */
+        .file-upload-wrapper {
+            margin-bottom: 30px;
+        }
+        
+        .file-upload-label {
+            display: block;
+            padding: 25px;
+            border: 2px dashed #444;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .file-upload-label:hover {
+            border-color: var(--primary-color);
+            background: rgba(229, 9, 20, 0.05);
+        }
+
+        .file-upload-label span {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .file-upload-wrapper input[type="file"] {
+            display: none; /* Esconde o botão feio original */
+        }
+
+        /* Pré-visualização da Imagem */
+        .image-preview {
+            max-width: 100%;
+            max-height: 180px;
+            margin-top: 15px;
+            border-radius: 8px;
+            display: none;
+            border: 2px solid #222;
+            object-fit: contain;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(229, 9, 20, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); }
+        }
+
+        /* Checkbox modificado */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .checkbox-group input {
+            margin-top: 2px;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            font-size: 13px;
+            color: #aaa;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        /* Botão de Envio */
+        .submit-btn {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-hover);
+            box-shadow: 0 10px 20px rgba(229,9,20,0.3);
+            transform: translateY(-2px);
+            animation: none; /* Pausa o pulso ao passar o mouse */
+        }
+
+        .submit-btn.loading {
+            background-color: #555;
+            cursor: not-allowed;
+            animation: none;
+            transform: none;
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .success-message h2 {
+            color: #10b981;
+            font-family: 'Oswald', sans-serif;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .success-message p {
+            color: #ccc;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="landing-wrapper">
+        
+        <!-- LADO ESQUERDO: Informações -->
+        <div class="info-panel">
+            <p class="subtitle">Você tem estômago pra isso?</p>
+            
+            <!-- Arte Oficial Hospedada -->
+            <img src="https://i.postimg.cc/KjD5sBj5/titulo-principal.png" alt="Arte Desafio Temaki 3KG" class="promo-banner">
+            
+            <p class="info-text">
+                A <strong>S.A. Casa do Sushi Yakiniku</strong> e o Corbucci promovem o maior desafio de Rio Preto. 
+                Os 8 sorteados vão se enfrentar ao vivo no dia 29 de abril, às 19h, devorando 2 temakis de 1,5 kg cada!
+            </p>
+                
+            <div class="prize-container">
+                <h3 class="prize-title">🏆 PREMIAÇÃO OFICIAL</h3>
+                <div class="prize-card first-place">
+                    <span class="prize-place">🥇 1º LUGAR</span>
+                    <span class="prize-value">R$ 2.000,00</span>
+                </div>
+                <div class="prize-card second-place">
+                    <span class="prize-place">🥈 2º LUGAR</span>
+                    <span class="prize-value">R$ 1.000,00</span>
+                </div>
+                <div class="prize-card third-place">
+                    <span class="prize-place">🥉 3º LUGAR</span>
+                    <span class="prize-value">R$ 500,00 <small>na S.A.</small></span>
+                </div>
+            </div>
+                
+            <div class="steps">
+                <strong>COMO PARTICIPAR:</strong>
+                <ol>
+                    <li>Consuma o buffet da S.A. até o dia 26/04</li>
+                    <li>Guarde o cupom da sua compra</li>
+                    <li>Preencha este formulário e anexe a foto do cupom</li>
+                    <li>Aguarde o sorteio no dia 27/04 (segunda-feira)</li>
+                </ol>
+                <p><em>* Os 8 sorteados serão avisados pelo contato informado.</em></p>
+            </div>
+        </div>
+
+        <!-- LADO DIREITO: Formulário -->
+        <div class="form-panel">
+            <div id="formContent">
+                <h3>PREENCHA PARA PARTICIPAR</h3>
+                
+                <form id="desafioForm">
+                    <!-- O placeholder com espaço vazio " " é essencial pro efeito da label flutuante funcionar -->
+                    <div class="input-group">
+                        <input type="text" id="nome" name="nome" placeholder=" " autocomplete="name" required>
+                        <label for="nome">Nome Completo</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="email" id="email" name="email" placeholder=" " autocomplete="email" required>
+                        <label for="email">E-mail</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="tel" id="telefone" name="telefone" placeholder=" " maxlength="15" autocomplete="tel" inputmode="tel" required>
+                        <label for="telefone">WhatsApp / Telefone</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="text" id="instagram" name="instagram" placeholder=" " required>
+                        <label for="instagram">Instagram (@seu.perfil)</label>
+                    </div>
+
+                    <div class="file-upload-wrapper">
+                        <label for="cupom" class="file-upload-label" id="fileLabel">
+                            <span id="fileText">📸 Clique para anexar a Foto do Cupom</span>
+                            <img id="imagePreview" class="image-preview" src="" alt="Pré-visualização do Cupom">
+                        </label>
+                        <input type="file" id="cupom" name="cupom" accept="image/*" required>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="regras" name="regras" required>
+                        <label for="regras">Confirmo que tenho estômago para isso, li e aceito as regras do evento.</label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Garantir Minha Vaga</button>
+                </form>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <h2>🎉 INSCRIÇÃO CONCLUÍDA!</h2>
+                <p>Sua foto do cupom foi registrada e sua vaga para o sorteio está garantida.</p>
+                <p style="margin-top: 15px;">Fique de olho no seu celular no dia <strong>27/04</strong>. Boa sorte!</p>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Rodapé com Redes Sociais -->
+    <footer class="site-footer">
+        <p>Siga a S.A. Casa do Sushi nas Redes Sociais</p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/sacasadosushifranchising?igsh=MWhpNGdiZXJtNGhwcA==" target="_blank" title="Instagram 1"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/sayakinikusjdoriopreto?igsh=MWxiMWhobXdtdGgxZw%3D%3D&utm_source=qr" target="_blank" title="Instagram 2"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@safranchising?_r=1&_t=ZS-95Z1Ur44vi8" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Variáveis para guardar os dados da imagem temporariamente
+        let base64String = "";
+        let fileName = "";
+        let mimeType = "";
+
+        // 1. Atualiza o texto visual do botão de arquivo quando a pessoa anexa a foto
+        const cupomInput = document.getElementById('cupom');
+        const fileText = document.getElementById('fileText');
+        const fileLabel = document.getElementById('fileLabel');
+        const imagePreview = document.getElementById('imagePreview');
+        
+        cupomInput.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                fileName = file.name;
+                mimeType = file.type;
+                
+                fileText.innerHTML = "✅ Arquivo Anexado: " + file.name;
+                fileText.style.color = "#10b981";
+                fileLabel.style.borderColor = "#10b981";
+                
+                // Cria a pré-visualização da imagem e extrai os dados Base64
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    imagePreview.src = event.target.result;
+                    imagePreview.style.display = 'block';
+                    // Pega apenas o código limpo da imagem, tirando o cabeçalho 'data:image/jpeg;base64,'
+                    base64String = event.target.result.split(',')[1];
+                }
+                reader.readAsDataURL(file);
+            } else {
+                fileText.innerHTML = "📸 Clique para anexar a Foto do Cupom";
+                fileText.style.color = "var(--text-muted)";
+                fileLabel.style.borderColor = "#444";
+                imagePreview.style.display = 'none';
+                imagePreview.src = '';
+                
+                base64String = "";
+                fileName = "";
+                mimeType = "";
+            }
+        });
+
+        // 2. Máscara automática para o telefone: (00) 00000-0000
+        const telefoneInput = document.getElementById('telefone');
+        telefoneInput.addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+
+        // 3. Adiciona "@" automaticamente no campo do Instagram
+        const instagramInput = document.getElementById('instagram');
+        instagramInput.addEventListener('input', function(e) {
+            let value = e.target.value.trim();
+            if (value.length > 0 && !value.startsWith('@')) {
+                e.target.value = '@' + value;
+            }
+        });
+
+        // 4. Lógica para interceptar o formulário e mostrar a mensagem bonita de sucesso
+        const form = document.getElementById('desafioForm');
+        const formContent = document.getElementById('formContent');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            const submitBtn = form.querySelector('.submit-btn');
+            submitBtn.innerText = '⏳ ENVIANDO INSCRIÇÃO...';
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            // Prepara os dados do formulário
+            const formData = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value,
+                telefone: document.getElementById('telefone').value,
+                instagram: document.getElementById('instagram').value,
+                cupomBase64: base64String,
+                cupomName: fileName,
+                cupomMimeType: mimeType
+            };
+
+            // Usa a função nativa do Google Apps Script para enviar os dados
+            google.script.run
+            .withSuccessHandler(function() {
+                formContent.style.display = 'none'; 
+                successMessage.style.display = 'block'; 
+            })
+            .withFailureHandler(function(error) {
+                console.error('Erro!', error);
+                submitBtn.innerText = '⚠️ ERRO AO ENVIAR. TENTE DE NOVO.';
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+            })
+            .salvarInscricao(formData);
+        });
+    </script>
+</body>
+</html>
